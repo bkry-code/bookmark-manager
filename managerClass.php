@@ -69,7 +69,7 @@
 			$bookmarks = $this->getListOfBookmarks();
 
 			if($bookmarks == null) {
-				echo 'Es sind noch keine Lesezeichen vorhanden';
+				echo $this->parseTemplate(array('bookmarks' => ''), $this->template_page);
 				return false;
 			}
 
