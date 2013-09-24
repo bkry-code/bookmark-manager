@@ -131,8 +131,8 @@
 			foreach($bookmarks as $bookmark) {
 				if(strpos(strtolower($bookmark->url), strtolower($term)) > 0 || strpos(strtolower($bookmark->title), strtolower($term)) > 0) {
 					$results[] = array(
-						'value' => stripslashes($bookmark->url),
-						'label' => stripslashes($bookmark->title)
+						'value' => $bookmark->url,
+						'label' => $bookmark->title
 					);
 				}
 			}
