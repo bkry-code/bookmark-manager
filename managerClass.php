@@ -90,7 +90,7 @@
 				$bookmarks = json_decode($json);
 				$bookmarks->bookmarks[] = array(
 					'url' => $url,
-					'title' => $title,
+					'title' => htmlentities(utf8_decode($title)),
 					'date' => time()
 				);
 
