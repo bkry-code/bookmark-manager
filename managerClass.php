@@ -112,7 +112,7 @@
 						$newList['bookmarks'][] = array(
 							'url' => $bookmark->url,
 							'title' => $bookmark->title,
-							'date' => $bookmark->title
+							'date' => $bookmark->date
 						);
 					}
 				}
