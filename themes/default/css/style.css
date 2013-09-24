@@ -127,7 +127,8 @@ ul {
     border-top: 1px solid #fff;
     padding: 10px;
     line-height: 1.125;
-    vertical-align: middle; }
+    vertical-align: middle;
+    background: #fefefe; }
     ul li:hover {
       background: #efefef; }
     ul li:last-child {
