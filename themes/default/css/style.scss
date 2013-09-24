@@ -147,32 +147,37 @@ ul {
 	width: 800px;
 	border: 1px solid $color-border;
 	border-radius: 3px;
-}
 
-li {
-	@include fontsize(18);
-	border-bottom: 1px solid $color-border;
-	border-top: 1px solid #fff;
-	padding: 10px;
-
-	&:hover {
-		background: $color-hover;
-	}
-
-	&:last-child {
-		border-bottom: 0;
-	}
-
-	a {
-		color: #333;
-		text-decoration: none;
+	li {
+		@include fontsize(16);
+		border-bottom: 1px solid $color-border;
+		border-top: 1px solid #fff;
+		padding: 10px;
 
 		&:hover {
-			color: blue;
+			background: $color-hover;
 		}
 
-		&.del {
-			color: red;
+		&:last-child {
+			border-bottom: 0;
 		}
+
+		a {
+			color: #333;
+			text-decoration: none;
+
+			&:hover {
+				color: blue;
+			}
+
+			&.del {
+				@include fontsize(12);
+				color: red;
+			}
+		}
+	}
+
+	time {
+		@include fontsize(12);
 	}
 }

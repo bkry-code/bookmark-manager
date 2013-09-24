@@ -31,7 +31,12 @@
 
 		private function parseTemplate($data, $template) {
 			foreach($data as $key => $value) {
-				$template = str_replace('{{'.$key.'}}', $value, $template);
+				if($key == 'date') {
+					$template = str_replace('{{stamp}}', date('Y-m-d', $value), $template);
+					$template = str_replace('{{date}}', date('d.m.Y', $value), $template);
+				} else {
+					$template = str_replace('{{'.$key.'}}', $value, $template);
+				}
 			}
 
 			return $template;
@@ -83,7 +88,12 @@
 			// check if bookmark is already saved, if not, do so
 			if(strpos(stripslashes($json), '"'.$url.'"') === false) {
 				$bookmarks = json_decode($json);
-				$bookmarks->bookmarks[] = array('url' => $url, 'title' => $title);
+				$bookmarks->bookmarks[] = array(
+					'url' => $url,
+					'title' => $title,
+					'date' => time()
+				);
+
 				file_put_contents('bookmarks.json', json_encode($bookmarks));
 			}
 		}
@@ -101,7 +111,8 @@
 					if($bookmark->url != $url) {
 						$newList['bookmarks'][] = array(
 							'url' => $bookmark->url,
-							'title' => $bookmark->title
+							'title' => $bookmark->title,
+							'date' => $bookmark->title
 						);
 					}
 				}
