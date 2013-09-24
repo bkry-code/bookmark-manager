@@ -8,6 +8,9 @@
 		private $template_listBookmark;
 
 		function __construct($theme, $baseURL) {
+			header('Content-Type: text/html; charset=utf-8');
+			mb_internal_encoding('UTF-8');
+
 			$this->themeId = $theme;
 			$this->baseURL = $baseURL;
 			$this->openTemplate();
@@ -43,18 +46,16 @@
 		}
 
 		private function openBookmarks() {
-
+			$json = null;
 			if(file_exists('bookmarks.json')) {
 				$json = file_get_contents('bookmarks.json');
-			} else {
-				touch('bookmarks.json');
 			}
 
 			return $json;
 		}
 
 		private function parseBookmarks() {
-			$bookmarks = json_decode(stripslashes($this->openBookmarks()));
+			$bookmarks = json_decode($this->openBookmarks());
 			return $bookmarks->bookmarks;
 		}
 
@@ -90,7 +91,7 @@
 				$bookmarks = json_decode($json);
 				$bookmarks->bookmarks[] = array(
 					'url' => $url,
-					'title' => htmlentities(utf8_decode($title)),
+					'title' => $title,
 					'date' => time()
 				);
 
@@ -120,7 +121,7 @@
 				file_put_contents('bookmarks.json', json_encode($newList));
 			}
 
-			$this->listBookmarks();
+			header('Location: '.$this->baseURL);
 		}
 
 		public function searchBookmark($term) {

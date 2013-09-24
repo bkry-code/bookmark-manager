@@ -1,6 +1,5 @@
 <?php
 	require('managerClass.php');
-
 	$manager = new BookmarkManager(false, 'http://bookmarks/');
 
 	switch($_GET['do']) {
