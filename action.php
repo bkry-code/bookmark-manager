@@ -6,5 +6,6 @@
 	switch($_GET['do']) {
 		case 'add': $manager->addBookmark($_GET['url'], $_GET['title']); break;
 		case 'del': $manager->delBookmark($_GET['url']); break;
+		case 'search': $manager->searchBookmark($_GET['term']); break;
 	}
 

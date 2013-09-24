@@ -111,6 +111,16 @@ header {
     font-size: 12px;
     font-size: 1.2rem; }
 
+.biginput {
+  font-size: 18px;
+  font-size: 1.8rem;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 50px;
+  width: 800px;
+  border: 1px solid #cccccc;
+  box-shadow: inset 3px -5px 10px #ddd; }
+
 .functions {
   float: right;
   width: 300px; }
@@ -136,12 +146,17 @@ ul {
     ul li a {
       color: #333;
       text-decoration: none; }
+      ul li a.link {
+        width: 100%;
+        display: inline-block; }
       ul li a:hover {
         color: blue; }
       ul li a.del {
         font-size: 12px;
         font-size: 1.2rem;
         color: red; }
+        ul li a.del:hover {
+          color: #f3c15e; }
   ul time {
     font-size: 12px;
     font-size: 1.2rem; }

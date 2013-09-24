@@ -3,6 +3,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Your Bookmarks - Bookmark-Manager</title>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 		<link rel="stylesheet" href="themes/default/css/style.css">
 	</head>
 	<body>
@@ -10,11 +11,23 @@
 			<h1>Bookmark-Manager</h1>
 		</header>
 		<div class="wrapper">
+			<form><input type="text" name="autocomplete" class="biginput" id="autocomplete" placeholder="Type to quickly open a bookmark"></form>
 			<ul>{{bookmarks}}</ul>
 			<div class="functions">
 				<a href="{{bookmarklet}}" class="button">Bookmarklet</a>
 				<p><small>Drag&amp;drop this into your browsers bookmarkbar.</small></p>
 			</div>
 		</div>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script>
+			$('#autocomplete').autocomplete({
+				source: 'action.php?do=search',
+				minLength: 2,
+				select: function (event, ui) {
+					window.open(ui.item.value, '_blank');
+				}
+			});
+		</script>
 	</body>
 </html>

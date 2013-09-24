@@ -137,6 +137,16 @@ header {
 	}
 }
 
+.biginput {
+	@include fontsize(18);
+	padding: 10px;
+	border-radius: 5px;
+	margin-bottom: 50px;
+	width: 800px;
+	border: 1px solid $color-border;
+	box-shadow: inset 3px -5px 10px #ddd;
+}
+
 .functions {
 	float: right;
 	width: 300px;
@@ -169,6 +179,11 @@ ul {
 			color: #333;
 			text-decoration: none;
 
+			&.link {
+				width: 100%;
+				display: inline-block;
+			}
+
 			&:hover {
 				color: blue;
 			}
@@ -176,6 +191,10 @@ ul {
 			&.del {
 				@include fontsize(12);
 				color: red;
+
+				&:hover {
+					color: #f3c15e;
+				}
 			}
 		}
 	}
