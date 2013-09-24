@@ -87,4 +87,28 @@
 				file_put_contents('bookmarks.json', json_encode($bookmarks));
 			}
 		}
+
+		public function delBookmark($url) {
+			// get json of currently saved bookmarks
+			$json = $this->openBookmarks();
+
+			// check if bookmark is already saved, if not, do so
+			if(strpos(stripslashes($json), '"'.$url.'"') !== false) {
+				$bookmarks = json_decode($json);
+				$newList = array('bookmarks' => array());
+
+				foreach($bookmarks->bookmarks as $bookmark) {
+					if($bookmark->url != $url) {
+						$newList['bookmarks'][] = array(
+							'url' => $bookmark->url,
+							'title' => $bookmark->title
+						);
+					}
+				}
+
+				file_put_contents('bookmarks.json', json_encode($newList));
+			}
+
+			$this->listBookmarks();
+		}
 	}

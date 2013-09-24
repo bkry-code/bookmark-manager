@@ -1,10 +1,10 @@
 var bookmarks = {
 
 	// edit your url here
-	baseUrl : 'http://bookmarks/add.php',
+	baseUrl : 'http://bookmarks/action.php',
 
 	submitURL : function(source, title) {   
-		var parameters = '?url=' + encodeURIComponent(source) + '&title=' + encodeURIComponent(title);    
+		var parameters = '?do=add&url=' + encodeURIComponent(source) + '&title=' + encodeURIComponent(title);
 		var iframe = document.createElement('iframe');
 		
 		iframe.setAttribute('id', 'bookmarkFrame');
