@@ -86,9 +86,10 @@ li {
   li:last-child {
     border-bottom: 0; }
   li a {
-    display: block;
     padding: 10px;
     color: #333;
     text-decoration: none; }
     li a:hover {
       color: blue; }
+    li a.del {
+      color: red; }
