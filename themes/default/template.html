@@ -11,11 +11,17 @@
 			<h1>Bookmark-Manager</h1>
 		</header>
 		<div class="wrapper">
-			<form><input type="text" name="autocomplete" class="biginput" id="autocomplete" placeholder="Type to quickly open a bookmark"></form>
-			<ul>{{bookmarks}}</ul>
+			<div class="results">
+				<form><input type="text" name="autocomplete" class="biginput" id="autocomplete" placeholder="Type to quickly open a bookmark"></form>
+				<ul>{{bookmarks}}</ul>
+			</div>
 			<div class="functions">
 				<a href="{{bookmarklet}}" class="button">Bookmarklet</a>
 				<p><small>Drag&amp;drop this into your browsers bookmarkbar.</small></p>
+
+				<ul class="tags">
+					{{tags}}
+				</ul>
 			</div>
 		</div>
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>

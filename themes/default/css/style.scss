@@ -137,71 +137,102 @@ header {
 	}
 }
 
-.biginput {
-	@include fontsize(18);
-	padding: 10px;
-	border-radius: 5px;
-	margin-bottom: 50px;
+.results {
+	float: left;
 	width: 800px;
-	border: 1px solid $color-border;
-	box-shadow: inset 3px -5px 10px #ddd;
+
+	.biginput {
+		@include fontsize(18);
+		padding: 10px;
+		border-radius: 5px;
+		margin-bottom: 50px;
+		width: 800px;
+		border: 1px solid $color-border;
+		box-shadow: inset 3px -5px 10px #ddd;
+	}
+
+	ul {
+
+		border: 1px solid $color-border;
+		border-radius: 3px;
+
+		li {
+			@include fontsize(16);
+			@include transit(background, 0.25s);
+
+			border-bottom: 1px solid $color-border;
+			border-top: 1px solid #fff;
+			padding: 10px;
+			line-height: 1.125;
+			vertical-align: middle;
+			background: #fefefe;
+
+			&:hover {
+				background: $color-hover;
+			}
+
+			&:last-child {
+				border-bottom: 0;
+			}
+
+			a {
+				color: #333;
+				text-decoration: none;
+
+				&.link {
+					width: 100%;
+					display: inline-block;
+				}
+
+				&:hover {
+					color: blue;
+				}
+
+				&.del {
+					@include fontsize(12);
+					color: red;
+
+					&:hover {
+						color: #f3c15e;
+					}
+				}
+			}
+		}
+
+		time {
+			@include fontsize(12);
+		}
+	}
 }
 
 .functions {
 	float: right;
 	width: 300px;
-}
 
-ul {
-	float: left;
-	width: 800px;
-	border: 1px solid $color-border;
-	border-radius: 3px;
+	.tags {
+		margin-top: 20px;
+		padding: 15px 0 0 0;
+		border-top: 1px solid $color-border;
 
-	li {
-		@include fontsize(16);
-		@include transit(background, 0.25s);
+		li {
+			display: inline-block;
+			margin: 5px;
 
-		border-bottom: 1px solid $color-border;
-		border-top: 1px solid #fff;
-		padding: 10px;
-		line-height: 1.125;
-		vertical-align: middle;
-		background: #fefefe;
-
-		&:hover {
-			background: $color-hover;
-		}
-
-		&:last-child {
-			border-bottom: 0;
-		}
-
-		a {
-			color: #333;
-			text-decoration: none;
-
-			&.link {
-				width: 100%;
-				display: inline-block;
-			}
-
-			&:hover {
-				color: blue;
-			}
-
-			&.del {
-				@include fontsize(12);
-				color: red;
+			a {
+				@include transit(background, 0.5s);
+				@include fontsize(14);
+				color: #000;
+				text-decoration: none;
+				background: #f3c15e;
+				padding: 2px 10px;
+				border-radius: 5px;
 
 				&:hover {
-					color: #f3c15e;
+					background: #aa477d;
+					color: #fff;
 				}
 			}
 		}
 	}
-
-	time {
-		@include fontsize(12);
-	}
 }
+

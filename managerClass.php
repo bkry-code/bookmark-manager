@@ -6,6 +6,7 @@
 		private $themeId;
 		private $template_page;
 		private $template_listBookmark;
+		private $template_listTags;
 
 		function __construct($theme, $baseURL) {
 			header('Content-Type: text/html; charset=utf-8');
@@ -29,7 +30,7 @@
 			$theme = (is_dir('themes/'.$this->themeId) && $this->themeId !== false) ? 'themes/'.$this->themeId.'/' : 'themes/default/';
 			$this->template_page 			= file_get_contents($theme.'template.html');
 			$this->template_listBookmark 	= file_get_contents($theme.'bookmark_item.html');
-
+			$this->template_listTags 	= file_get_contents($theme.'tag_item.html');
 		}
 
 		private function parseTemplate($data, $template) {
@@ -41,8 +42,24 @@
 					$template = str_replace('{{'.$key.'}}', $value, $template);
 				}
 			}
-
 			return $template;
+		}
+
+		private function openTags() {
+			$json = null;
+			if(file_exists('tags.json')) {
+				$json = file_get_contents('tags.json');
+			}
+			return $json;
+		}
+
+		private function parseTags() {
+			$tags = json_decode($this->openTags());
+			return $tags->tags;
+		}
+
+		public function getListOfTags() {
+			return $this->parseTags();
 		}
 
 		private function openBookmarks() {
@@ -65,18 +82,27 @@
 
 		public function listBookmarks() {
 
-			$data = array('bookmarks' => '', 'bookmarklet' => $this->getBookmarklet());
-			$bookmarks = $this->getListOfBookmarks();
+			$data = array('bookmarks' => '', 'tags' => '', 'bookmarklet' => $this->getBookmarklet());
+			$bookmarks 	= $this->getListOfBookmarks();
+			$tags 		= $this->getListOfTags();
 
 			if($bookmarks == null) {
 				echo $this->parseTemplate(array('bookmarks' => ''), $this->template_page);
 				return false;
 			}
 
-			// reverse array to have the newest item on top
-			$bookmarks = array_reverse($bookmarks);
-			foreach($bookmarks as $bookmark) {
-				$data['bookmarks'] .= $this->parseTemplate($bookmark, $this->template_listBookmark);
+			if(count($bookmarks) > 0) {
+				// reverse array to have the newest item on top
+				$bookmarks = array_reverse($bookmarks);
+				foreach($bookmarks as $bookmark) {
+					$data['bookmarks'] .= $this->parseTemplate($bookmark, $this->template_listBookmark);
+				}
+			}
+
+			if(count($tags) > 0) {
+				foreach($tags as $tag) {
+					$data['tags'] .= $this->parseTemplate($tag, $this->template_listTags);
+				}
 			}
 
 			echo $this->parseTemplate($data, $this->template_page);
