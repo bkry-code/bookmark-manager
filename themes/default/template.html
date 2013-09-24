@@ -25,8 +25,7 @@
 				source: 'action.php?do=search',
 				minLength: 2,
 				select: function (event, ui) {
-					window.open(ui.item.value, '_blank');
-					ui.item.value = '';
+					window.open(ui.item.url, '_blank');
 				}
 			});
 		</script>
