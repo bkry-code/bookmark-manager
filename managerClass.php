@@ -12,7 +12,7 @@
 			header('Content-Type: text/html; charset=utf-8');
 			mb_internal_encoding('UTF-8');
 
-			$this->themeId = $theme;
+			$this->themeId = (!$theme) ? 'default' : $theme;
 			$this->baseURL = $baseURL;
 			$this->openTemplate();
 		}
@@ -122,7 +122,11 @@
 				);
 
 				file_put_contents('bookmarks.json', json_encode($bookmarks));
+				$this->showBookmarkletNotification('Saved bookmark', true);
+			} else {
+				$this->showBookmarkletNotification('Already in your list');
 			}
+			
 		}
 
 		public function delBookmark($url) {
@@ -163,6 +167,26 @@
 				}
 			}
 			echo json_encode($results);
+		}
+
+		public function showBookmarkletNotification($message, $spinner = false) {
+			$output = '<!DOCTYPE html>
+						<html>
+							<head>
+									<meta charset="utf-8">
+									<meta http-equiv="X-UA-Compatible" content="IE=edge">
+									<style type="text/css" media="screen">
+										body { background: #333; color: #fff; text-align: center; font-family: arial, sans-serif; padding-top: 15px;}
+									</style>
+							</head>
+							<body>';
+
+								if($spinner !== false) : $output .= '<img src="themes/'.$this->themeId.'/img/loader-big.gif" alt="Loading">'; endif;
+								$output .= '<p>'.$message.'</p>
+							</body>
+						</html>';
+
+			echo $output;
 		}
 	}
 
